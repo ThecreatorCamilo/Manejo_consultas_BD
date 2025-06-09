@@ -1,0 +1,55 @@
+CREATE DATABASE videoclub;
+
+CREATE TABLE Tipo_pelicula(
+  cod_tipo INT PRIMARY KEY,
+  descripcion_categoria VARCHAR(100)
+);
+
+CREATE TABLE Pelicula(
+  cod_pelicula INT PRIMARY KEY,
+  titulo VARCHAR(200),
+  cod_tipo INT,
+  FOREIGN KEY (cod_tipo) REFERENCES Tipo_pelicula(cod_tipo)
+);
+
+CREATE TABLE Actor(
+  cod_actor INT PRIMARY KEY,
+  nom_actor VARCHAR(100),
+  fechnac_actor DATE
+);
+
+CREATE TABLE Pelicula_Actor(
+  cod_pelicula INT,
+  cod_actor INT, 
+  PRIMARY KEY (cod_pelicula, cod_actor),
+  FOREIGN KEY (cod_pelicula) REFERENCES Pelicula(cod_pelicula),
+  FOREIGN KEY (cod_actor) REFERENCES Actor(cod_actor)
+);  
+
+CREATE TABLE Cassette(
+  cod_cassette INT PRIMARY KEY,
+  num_copias INT,
+  formato VARCHAR(100),
+  cod_pelicula INT,
+  FOREIGN KEY (cod_pelicula) REFERENCES Pelicula(cod_pelicula)
+); 
+ 
+CREATE TABLE Cliente(
+  cod_cliente INT PRIMARY KEY,
+  nom_cliente VARCHAR(100),
+  dir_cliente VARCHAR(200),
+  telef_cliente VARCHAR(20),
+  num_membresia INT
+);
+
+CREATE TABLE Alquiler(
+  cod_alquiler INT PRIMARY KEY,
+  cod_cliente INT,
+  cod_cassette INT,
+  fecha_alquiler DATE,
+  fecha_dev DATE,
+  valor_alquiler FLOAT,
+  cantidad INT,
+  FOREIGN KEY (cod_cliente) REFERENCES Cliente(cod_cliente),
+  FOREIGN KEY (cod_cassette) REFERENCES Cassette(cod_cassette)
+);
