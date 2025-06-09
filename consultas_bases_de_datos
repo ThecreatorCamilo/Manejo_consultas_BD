@@ -1,0 +1,91 @@
+Desarrolle el siguiente quiz de forma individual. Puede utilizar el motor de bases de datos de su preferencia. Responda a cada punto con el comando SQL para obtener los resultados. Agencia de Viajes – Esquema.
+
+Consultas
+
+1. Lista todos los lugares para viajar registrados en la base de datos
+
+SELECT * FROM LUGAR;
+
+ 
+
+2. Lista con el nombre y apellido a todos los pasajeros
+
+SELECT P_NOMBRE, P_APELLIDO FROM PASAJERO:
+
+ 
+
+3. Lista el nombre y clima de todos los destinos disponibles
+
+SELECT L_NOMBRE, L_CLIMA FROM LUGAR;
+
+ 
+
+4. Mostrar el nombre, total de habitantes de todos los lugares, además, suponer un incremento de la población de cada lugar en 100000 habitantes
+
+SELECT L_NOMBRE, L_TOTAL_HABITANTES, (L_TOTAL_HABITANTES +100000) AS POBLACION_INCREMENTADA FROM LUGAR;
+
+ 
+
+5. Lista los diferentes climas de los destinos
+
+SELECT DISTINCT L_CLIMA FROM LUGAR;
+
+ 
+
+6. Lista los diferentes perfiles de los pasajeros
+
+SELECT DISTINCT P_PERFIL FROM PASAJERO;
+
+ 
+
+7. Lista los diferentes apellidos y su perfil de pasajero
+
+SELECT DISTINCT P_APELLIDO, P_PERFIL FROM PASAJERO;
+
+ 
+
+ 8. Lista los nombres y apellidos de todos los pasajeros de clase (perfil) turista
+
+SELECT P_NOMBRE, P_APELLIDO FROM PASAJERO WHERE P_PERFIL = ‘turista’;
+
+ 
+
+9. Listado de todos los lugares con clima tropical
+
+SELECT * FROM LUGAR WHERE L_CLIMA = ‘tropical’;
+
+ 
+
+10. Listar todos los países con un total de habitantes que supere los 10 millones
+
+SELECT * FROM LUGAR WHERE L_TOTAL_HABITANTES >10000000;
+
+ 
+
+11. Mostrar todos los pasajeros nacidos entre 1970 y 1980
+
+SELECT * FROM PASAJERO WHERE P_FECHA_NACIMIENTO BETWEEN ‘1970-01-01’ AND ‘1980-12-31’
+
+ 
+
+12. Listado de todos los pasajeros cuyo nombre empiece por la letra M
+
+SELECT * FROM PASAJERO WHERE P_NOMBRE LIKE ‘M%’;
+
+ 
+
+13. Listar los diferentes apellidos de los pasajeros que empiecen por M y terminen en EZ
+
+SELECT DISTINCT P_APELLIDO FROM PASAJERO WHERE P_APELLIDO LIKE ‘M% EZ’;
+
+ 
+
+14. Listar los pasajeros nacidos después de 1970 que viajen con el perfil business class y que tenga una G en su nombre.
+
+SELECT * FROM PASAJERO WHERE P_FECHA_NACIMIENTO > ‘1970-12-31’ AND P_PERFIL = ‘business class’ AND P_NOMBRE LIKE ‘%G%’;
+
+ 
+
+15. Listado de países ordenados por su total de habitantes de mayor a menor.
+
+SELECT * FROM LUGAR WHERE L_TIPO = ‘pais’  ORDER BY L_TOTAL_HABITANTES DESC;
