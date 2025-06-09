@@ -1,0 +1,48 @@
+CREATE DATABASE sistema_educativo;
+
+CREATE TABLE Colegio(
+    id_Colegio INT PRIMARY KEY,
+    Nombre VARCHAR(2000)
+);
+
+
+CREATE TABLE Profesor(
+    id_Profesor INT PRIMARY KEY,
+    Nombre VARCHAR(2000),
+    id_Colegio INT,
+    Curso VARCHAR(80),
+    Aula VARCHAR(10),
+    FOREIGN KEY (id_Colegio) REFERENCES Colegio(id_Colegio)
+);
+
+
+CREATE TABLE Asignatura(
+    id_Asignatura INT PRIMARY KEY,
+    Nombre VARCHAR(2000)
+);
+
+
+CREATE TABLE Libro (
+    id_Libro INT PRIMARY KEY,
+    Nombre VARCHAR(2000),
+    Editorial VARCHAR(100)
+);
+
+
+CREATE TABLE Prestamo(
+    id_Prestamo INT PRIMARY KEY,
+    id_Profesor INT,
+    id_Libro INT,
+    fecha_Prestamo VARCHAR(80),
+    FOREIGN KEY (id_Profesor) REFERENCES Profesor(id_Profesor),
+    FOREIGN KEY (id_Libro) REFERENCES Libro(id_Libro)
+);
+
+
+CREATE TABLE Profesor_Asignatura(
+    id_Profesor INT,
+    id_Asignatura INT,
+    PRIMARY KEY (id_Profesor, id_Asignatura),
+    FOREIGN KEY (id_Profesor) REFERENCES Profesor(id_Profesor),
+    FOREIGN KEY (id_Asignatura) REFERENCES Asignatura(id_Asignatura)
+);
